@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jiwa Digital - Platform Edukatif Karakter Digital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section:nth-child(even) {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .feature-card:active {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .age-groups {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .age-group {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .age-group:hover {
+            transform: scale(1.02);
+        }
+
+        .age-group h3 {
+            color: #667eea;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .age-badge {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ff6b6b;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .age-groups {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 15px 0;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .nav.visible {
+            transform: translateY(0);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            animation: slideDown 0.3s ease;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+        }
+
+        .close:hover {
+            color: #ff6b6b;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+    
+    <nav class="nav" id="navbar">
+        <div class="nav-content">
+            <div class="logo">🌟 Jiwa Digital</div>
+            <ul class="nav-links">
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#fitur">Fitur</a></li>
+                <li><a href="#kelompok-usia">Kelompok Usia</a></li>
+                <li><a href="#tentang">Tentang</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="beranda">
+        <div class="container">
+            <div class="hero-content">
+                <h1>🌟 Jiwa Digital</h1>
+                <p>Platform Edukatif untuk Membangun Karakter Digital Sejak Usia Dini</p>
+                <a href="#fitur" class="cta-button">Jelajahi Platform</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="fitur">
+        <div class="container">
+            <h2>Fitur Unggulan Platform</h2>
+            <div class="features-grid">
+                <div class="feature-card" onclick="openModal('dongeng')">
+                    <div class="feature-icon">📚</div>
+                    <h3>Dongeng Interaktif Nusantara</h3>
+                    <p>Cerita lokal dengan ilustrasi menarik yang mengajarkan nilai-nilai budaya dan digital. Dilengkapi dengan panduan orang tua untuk diskusi bermakna.</p>
+                </div>
+                
+                <div class="feature-card" onclick="openModal('aktivitas')">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Aktivitas Visual & Kuis</h3>
+                    <p>Lembar mewarnai tokoh cerita dan kuis refleksi sederhana yang membantu anak memahami pesan moral dari setiap dongeng.</p>
+                </div>
+                
+                <div class="feature-card" onclick="openModal('diskusi')">
+                    <div class="feature-icon">💭</div>
+                    <h3>Ruang Diskusi Anonim</h3>
+                    <p>Platform aman untuk remaja berbagi pengalaman digital mereka dengan pendampingan mentor empatik dan profesional.</p>
+                </div>
+                
+                <div class="feature-card" onclick="openModal('peta')">
+                    <div class="feature-icon">🗺️</div>
+                    <h3>Peta Nilai Digital</h3>
+                    <p>Alat refleksi untuk memantau perkembangan karakter digital seperti empati, kejujuran, dan kedisiplinan dalam bermedia sosial.</p>
+                </div>
+                
+                <div class="feature-card" onclick="openModal('modul')">
+                    <div class="feature-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Modul Keluarga & Sekolah</h3>
+                    <p>Panduan lengkap untuk orang tua dan guru, termasuk template jadwal digital sehat dan strategi pendampingan anak.</p>
+                </div>
+                
+                <div class="feature-card" onclick="openModal('pelatihan')">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Pelatihan Guru</h3>
+                    <p>Program pelatihan singkat namun komprehensif untuk membekali pendidik dengan keterampilan literasi digital modern.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="kelompok-usia">
+        <div class="container">
+            <h2>Program Berdasarkan Kelompok Usia</h2>
+            <div class="age-groups">
+                <div class="age-group">
+                    <h3>
+                        🧒 Anak Usia Dini
+                        <span class="age-badge">3-9 Tahun</span>
+                    </h3>
+                    <p>Program khusus untuk memperkenalkan konsep digital dengan cara yang menyenangkan dan mudah dipahami.</p>
+                    <ul class="feature-list">
+                        <li>Dongeng interaktif dengan karakter Nusantara</li>
+                        <li>Cerita bertema keamanan digital sederhana</li>
+                        <li>Pembelajaran tentang privasi dan sopan santun online</li>
+                        <li>Aktivitas mewarnai dan kuis refleksi</li>
+                        <li>Panduan diskusi untuk orang tua</li>
+                        <li>Sesi membaca sebelum tidur yang edukatif</li>
+                    </ul>
+                </div>
+                
+                <div class="age-group">
+                    <h3>
+                        🧑‍🎓 Remaja
+                        <span class="age-badge">10-17 Tahun</span>
+                    </h3>
+                    <p>Program mendalam untuk remaja yang sudah aktif di dunia digital dan media sosial.</p>
+                    <ul class="feature-list">
+                        <li>Cerita visual tentang FOMO dan tekanan sosial</li>
+                        <li>Edukasi bahaya oversharing dan cyberbullying</li>
+                        <li>Kuis "Cermin Diri" untuk evaluasi kebiasaan digital</li>
+                        <li>Pembelajaran etika bermedsos dan berpikir kritis</li>
+                        <li>Panduan membangun jejak digital yang sehat</li>
+                        <li>Ruang diskusi anonim dengan mentor</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="tentang">
+        <div class="container">
+            <h2>Tentang Jiwa Digital</h2>
+            <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem;">
+                    Jiwa Digital hadir sebagai solusi komprehensif untuk membangun karakter digital yang sehat sejak usia dini. Kami percaya bahwa pendidikan karakter digital tidak bisa berdiri sendiri, melainkan membutuhkan kolaborasi antara keluarga, sekolah, dan komunitas.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem;">
+                    Dengan menggabungkan teknologi modern berbasis web, kami menciptakan pengalaman belajar yang bermakna dan aplikatif dalam kehidupan sehari-hari. Platform ini dirancang untuk tidak hanya memberikan pengetahuan, tetapi juga membentuk perilaku positif di dunia digital.
+                </p>
+                <a href="https://www.jiwadigital.com" class="cta-button" style="font-size: 1.2rem; padding: 18px 35px;">
+                    Kunjungi www.JiwaDigital.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <h3>🌟 Jiwa Digital</h3>
+            <p>Membangun Generasi Digital yang Berkarakter</p>
+            <div class="social-links">
+                <a href="#">📧 Email</a>
+                <a href="#">📱 WhatsApp</a>
+                <a href="#">📘 Facebook</a>
+                <a href="#">📸 Instagram</a>
+            </div>
+            <p style="margin-top: 20px; opacity: 0.7;">
+                © 2025 Jiwa Digital. Semua hak cipta dilindungi.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="featureModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalImage" class="modal-image"></div>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
+        </div>
+    </div>
+
+    <script>
+        // Feature data
+        const features = {
+            dongeng: {
+                title: "Dongeng Interaktif Nusantara",
+                icon: "📚",
+                description: "Nikmati koleksi dongeng tradisional Indonesia yang telah diadaptasi untuk era digital. Setiap cerita dilengkapi dengan ilustrasi menarik, narasi audio berkualitas tinggi, dan elemen interaktif yang memungkinkan anak-anak berpartisipasi dalam cerita. Dongeng-dongeng ini mengajarkan nilai-nilai luhur budaya Indonesia sambil memperkenalkan konsep keamanan dan etika digital dengan cara yang mudah dipahami."
+            },
+            aktivitas: {
+                title: "Aktivitas Visual & Kuis",
+                icon: "🎨",
+                description: "Berbagai aktivitas kreatif yang dirancang khusus untuk memperkuat pemahaman anak terhadap pesan moral dalam setiap dongeng. Tersedia lembar mewarnai dengan tokoh-tokoh cerita yang dapat diunduh, puzzle interaktif, dan kuis refleksi yang disesuaikan dengan tingkat usia. Setiap aktivitas dilengkapi dengan panduan untuk orang tua agar dapat mendampingi anak dengan optimal."
+            },
+            diskusi: {
+                title: "Ruang Diskusi Anonim",
+                icon: "💭",
+                description: "Platform khusus untuk remaja yang ingin berbagi pengalaman dan tantangan mereka dalam berinteraksi di dunia digital. Ruang ini dimoderasi oleh mentor profesional yang berpengalaman dalam psikologi remaja dan literasi digital. Sistem anonim memastikan privasi pengguna sambil tetap memberikan lingkungan yang aman dan supportif untuk diskusi terbuka."
+            },
+            peta: {
+                title: "Peta Nilai Digital",
+                icon: "🗺️",
+                description: "Alat evaluasi diri yang inovatif untuk membantu remaja memahami dan memantau perkembangan karakter digital mereka. Peta ini mencakup berbagai aspek seperti empati online, kejujuran dalam berkomunikasi, kemampuan berpikir kritis terhadap informasi, dan kedisiplinan dalam menggunakan media sosial. Hasil evaluasi disajikan dalam bentuk visual yang menarik dan mudah dipahami."
+            },
+            modul: {
+                title: "Modul Keluarga & Sekolah",
+                icon: "👨‍👩‍👧‍👦",
+                description: "Panduan komprehensif yang dirancang khusus untuk orang tua dan pendidik. Modul ini berisi strategi praktis untuk mendampingi anak dalam mengembangkan karakter digital yang sehat, template jadwal penggunaan teknologi yang seimbang, serta teknik komunikasi efektif untuk membahas isu-isu digital dengan anak. Dilengkapi dengan studi kasus nyata dan solusi praktis."
+            },
+            pelatihan: {
+                title: "Pelatihan Guru",
+                icon: "🎓",
+                description: "Program pelatihan intensif untuk para pendidik yang ingin mengintegrasikan pendidikan karakter digital dalam kurikulum mereka. Pelatihan ini mencakup pemahaman tentang tantangan digital masa kini, metodologi pengajaran yang efektif, dan penggunaan teknologi sebagai alat pembelajaran yang positif. Tersedia dalam format workshop, webinar, dan modul pembelajaran mandiri."
+            }
+        };
+
+        // Modal functions
+        function openModal(featureId) {
+            const feature = features[featureId];
+            const modal = document.getElementById('featureModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalImage = document.getElementById('modalImage');
+
+            modalTitle.textContent = feature.title;
+            modalDescription.textContent = feature.description;
+            modalImage.textContent = feature.icon;
+
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('featureModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('featureModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Scroll indicator
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('scrollIndicator').style.width = scrolled + '%';
+            
+            // Show/hide navbar
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('visible');
+            } else {
+                navbar.classList.remove('visible');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.feature-card, .age-group').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // CTA button click effect
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Create ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                `;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            .cta-button {
+                position: relative;
+                overflow: hidden;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
